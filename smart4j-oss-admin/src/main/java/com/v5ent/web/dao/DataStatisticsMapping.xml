@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eshop4j.web.dao.DataStatisticsMapper">
+
+	<select id="queryHomePageData" resultType="HashMap" parameterType="com.eshop4j.web.request.DataStatisticsRequest">
+		SELECT
+			newCustomerCount.newCustomer AS newCustomer,
+			totalCustomerCount.totalCustomer AS totalCustomer,
+			newOrderNumCount.newOrderNum AS newOrderNum,
+			totalOrderNumCount.totalOrderNum AS totalOrderNum,
+			newSaleAmountCount.newSaleAmount AS newSaleAmount,
+			totalSaleAmountCount.totalSaleAmount AS totalSaleAmount
+		FROM
+			(
+				SELECT
+					count(DISTINCT user_id) AS newCustomer
+				FROM
+					t_customer
+				WHERE
+					DATE_FORMAT(wechat_subscribe_time, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d')
+				AND DATE_FORMAT(#{endTime}, '%Y-%m-%d')
+			) newCustomerCount,
+			(
+				SELECT
+					count(DISTINCT user_id) AS totalCustomer
+				FROM
+					t_customer
+			) totalCustomerCount,
+			(
+				SELECT
+					count(DISTINCT toi.order_item_id) AS newOrderNum
+				FROM
+					t_order_item toi,
+					t_order tord
+				WHERE
+					tord.is_payed = 1
+					AND tord.order_id = toi.order_id
+					AND DATE_FORMAT(toi.create_time, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d')
+				AND DATE_FORMAT(#{endTime}, '%Y-%m-%d')
+			) newOrderNumCount,
+			(
+				SELECT
+					count(DISTINCT toi.order_item_id) AS totalOrderNum
+				FROM
+					t_order_item toi,
+					t_order tord
+				WHERE
+					tord.is_payed = 1
+					AND tord.order_id = toi.order_id
+			) totalOrderNumCount,
+			(
+				SELECT
+					sum(IFNULL(amount, 0)) AS newSaleAmount
+				FROM
+					t_order
+				WHERE
+					is_payed = 1
+					AND DATE_FORMAT(create_time, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d')
+				AND DATE_FORMAT(#{endTime}, '%Y-%m-%d')
+			) newSaleAmountCount,
+			(
+				SELECT
+					sum(IFNULL(amount, 0)) AS totalSaleAmount
+				FROM
+					t_order
+				WHERE
+					is_payed = 1
+			) totalSaleAmountCount
+	</select>
+	
+	<select id="queryNewCustomerTable" resultType="HashMap" parameterType="com.eshop4j.web.request.DataStatisticsRequest">
+		SELECT
+			count(DISTINCT user_id) AS registerCustomerNum,
+			DATE_FORMAT(wechat_subscribe_time, #{dateFormat}) AS registerCustomerTime
+		FROM
+			t_customer
+		WHERE
+			DATE_FORMAT(wechat_subscribe_time, #{dateFormat}) BETWEEN DATE_FORMAT(#{startTime}, #{dateFormat})
+		AND DATE_FORMAT(#{endTime}, #{dateFormat})
+		GROUP BY
+			registerCustomerTime
+	</select>
+	
+	<select id="queryOrderTable" resultType="HashMap" parameterType="com.eshop4j.web.request.DataStatisticsRequest">
+		SELECT
+			count(DISTINCT toi.order_item_id) AS orderNum,
+			DATE_FORMAT(toi.create_time, #{dateFormat}) AS orderCreateTime
+		FROM
+			t_order_item toi,
+				t_order tord
+		WHERE
+			tord.is_payed = 1
+			AND tord.order_id = toi.order_id
+			AND DATE_FORMAT(toi.create_time, #{dateFormat}) BETWEEN DATE_FORMAT(#{startTime}, #{dateFormat})
+		AND DATE_FORMAT(#{endTime}, #{dateFormat})
+		GROUP BY
+			orderCreateTime
+	</select>
+	
+	<select id="querySaleAmount" resultType="HashMap" parameterType="com.eshop4j.web.request.DataStatisticsRequest">
+		SELECT
+			sum(IFNULL(amount, 0)) AS saleAmount,
+			DATE_FORMAT(create_time, #{dateFormat}) AS saleTime
+		FROM
+			t_order
+		WHERE
+			is_payed = 1
+			AND DATE_FORMAT(create_time, #{dateFormat}) BETWEEN DATE_FORMAT(#{startTime}, #{dateFormat})
+		AND DATE_FORMAT(#{endTime}, #{dateFormat})
+		GROUP BY
+			saleTime
+	</select>
+
+</mapper>
