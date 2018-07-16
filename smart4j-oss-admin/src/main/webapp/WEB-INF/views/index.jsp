@@ -17,7 +17,7 @@ String basePath = "//" + request.getServerName() +  port + path + "/";
     <head>
         <base href="<%=basePath%>">
         <meta charset="utf-8" />
-        <title>ESHOP运营管理系统</title>
+        <title>运营管理系统</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta content="" name="description" />
@@ -387,5 +387,22 @@ String basePath = "//" + request.getServerName() +  port + path + "/";
         <script type="text/javascript" src="app/common/milo.js"></script>
         <!-- <script data-main="app/js/main" src="app/lib/requirejs/require.js"></script> -->
         <script type="text/javascript" src="assets/plugins/echarts/echarts.min.js"></script>
+        
+        <!-- DataTables -->
+<script type="text/javascript" src="assets/plugins/data-tables/js/jquery.dataTables.min.js"  ></script>
+<link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/css/jquery.dataTables.min.css"  />
+<link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/css/dataTables.bootstrap.min.css"  />
+<!-- moment -->
+<script type="text/javascript" src="assets/plugins/bootstrap-daterangepicker/moment.min.js"  ></script>
+<!-- Editor -->
+<script type="text/javascript" src="assets/plugins/data-tables/extensions/Editor/js/dataTables.editor.min.js"  ></script>
+<link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/extensions/Editor/css/editor.dataTables.min.css"  />
+
+<script type="text/javascript" src="assets/plugins/data-tables/extensions/Buttons/js/dataTables.buttons.min.js"  ></script>
+<link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/extensions/Buttons/css/buttons.dataTables.min.css"  />
+
+<script type="text/javascript" src="assets/plugins/data-tables/extensions/Select/js/dataTables.select.min.js"  ></script>
+<link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/extensions/Select/css/select.dataTables.min.css"  />
+        
     </body>
 </html>

@@ -16,7 +16,7 @@
 <script type="text/javascript" src="assets/plugins/data-tables/extensions/Select/js/dataTables.select.min.js"  ></script>
 <link rel="stylesheet" type="text/css" href="assets/plugins/data-tables/extensions/Select/css/select.dataTables.min.css"  />
 
-<script type="text/javascript" src="app/${vo.mvcName}/${vo.mvcName}-list.js"></script>
+<script type="text/javascript" src="app/${generate.config.module}/${vo.mvcName}/${vo.mvcName}-list.js"></script>
 <!-- 管理员才有下列权限 -->
 <shiro:hasRole name="admin">
 <input type="hidden" id="shiro_admin" />
@@ -25,7 +25,11 @@
         <thead>
             <tr>
             <#list vo.attributes as attribute>	
-            <th>${attribute.comment}:</th>
+            <#if attribute.comment??>
+	            <th>${attribute.comment}:</th>
+	        <#else>
+	            <th>${attribute.column.columnName}:</th>
+			</#if>
             </#list>
             </tr>
         </thead>

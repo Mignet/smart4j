@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.web.dao.NewsMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.web.model.News" id="BaseResultMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="tfrom" property="tfrom" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="INTEGER"/>
+		<result column="person" property="person" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	id,
+	    	title,
+	    	content,
+	    	tfrom,
+	    	create_time,
+	    	status,
+	    	type,
+	    	person,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.id,
+	    	t.title,
+	    	t.content,
+	    	t.tfrom,
+	    	t.create_time,
+	    	t.status,
+	    	t.type,
+	    	t.person,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != id ">
+			and id = #{id}
+		</if>
+		<if test=" null != title and ''!= title  ">
+			and title = #{title}
+		</if>
+		<if test=" null != content and ''!= content  ">
+			and content = #{content}
+		</if>
+		<if test=" null != tfrom and ''!= tfrom  ">
+			and tfrom = #{tfrom}
+		</if>
+		<if test=" null != createTime ">
+			and create_time = #{createTime}
+		</if>
+		<if test=" null != status ">
+			and status = #{status}
+		</if>
+		<if test=" null != type ">
+			and type = #{type}
+		</if>
+		<if test=" null != person and ''!= person  ">
+			and person = #{person}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.News">
+		select <include refid="Base_Column_List" /> from  t_news 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.News">
+		select <include refid="Base_Column_List" /> from  t_news 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from  t_news
+    where  id = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from  t_news
+    where id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.web.model.News" >
+    INSERT INTO  t_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					title,
+				</if>
+			 	<if test=" null != content and ''!= content  ">
+					content,
+				</if>
+			 	<if test=" null != tfrom and ''!= tfrom  ">
+					tfrom,
+				</if>
+			 	<if test=" null != createTime ">
+					create_time,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+			 	<if test=" null != type ">
+					type,
+				</if>
+			 	<if test=" null != person and ''!= person  ">
+					person,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					 	#{title},
+				</if>
+			 	<if test=" null != content and ''!= content  ">
+					 	#{content},
+				</if>
+			 	<if test=" null != tfrom and ''!= tfrom  ">
+					 	#{tfrom},
+				</if>
+			 	<if test=" null != createTime ">
+					 	#{createTime},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+			 	<if test=" null != type ">
+					 	#{type},
+				</if>
+			 	<if test=" null != person and ''!= person  ">
+					 	#{person},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.web.model.News" useGeneratedKeys="true" keyProperty="id" >
+		INSERT INTO  t_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					title,
+				</if>
+			 	<if test=" null != content and ''!= content  ">
+					content,
+				</if>
+			 	<if test=" null != tfrom and ''!= tfrom  ">
+					tfrom,
+				</if>
+			 	<if test=" null != createTime ">
+					create_time,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+			 	<if test=" null != type ">
+					type,
+				</if>
+			 	<if test=" null != person and ''!= person  ">
+					person,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != title and ''!= title  ">
+					 	#{title},
+				</if>
+			 	<if test=" null != content and ''!= content  ">
+					 	#{content},
+				</if>
+			 	<if test=" null != tfrom and ''!= tfrom  ">
+					 	#{tfrom},
+				</if>
+			 	<if test=" null != createTime ">
+					 	#{createTime},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+			 	<if test=" null != type ">
+					 	#{type},
+				</if>
+			 	<if test=" null != person and ''!= person  ">
+					 	#{person},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.web.model.News" >
+  		UPDATE  t_news
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != title and ''!= title  ">
+						title = #{title},
+					</if>
+					<if test=" null != content and ''!= content  ">
+						content = #{content},
+					</if>
+					<if test=" null != tfrom and ''!= tfrom  ">
+						tfrom = #{tfrom},
+					</if>
+					<if test=" null != createTime ">
+						create_time = #{createTime},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+					<if test=" null != type ">
+						type = #{type},
+					</if>
+					<if test=" null != person and ''!= person  ">
+						person = #{person},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 id = #{id}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.web.model.News" >
+	    UPDATE  t_news
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != title and ''!= title  ">
+						title = #{title},
+					</if>
+					<if test=" null != content and ''!= content  ">
+						content = #{content},
+					</if>
+					<if test=" null != tfrom and ''!= tfrom  ">
+						tfrom = #{tfrom},
+					</if>
+					<if test=" null != createTime ">
+						create_time = #{createTime},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+					<if test=" null != type ">
+						type = #{type},
+					</if>
+					<if test=" null != person and ''!= person  ">
+						person = #{person},
+					</if>
+			</trim>
+		</set>
+		<where>
+			id = #{0}
+		</where>
+	  </update>
+
+	<!-- 分页条件查询 -->
+    <select id="selectBySearchInfo" resultMap="BaseResultMap" parameterType="com.v5ent.core.datatable.DataTable">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_news
+        <where> 
+        <if test="dt.search!=null">  
+                title LIKE CONCAT('%','${dt.search.value}','%' )  
+         </if>  
+         <if test="dt.order!=null">  
+               <foreach collection="dt.order" index="index" item="item"
+                    open="order by" separator="," close=" ">
+                    ${item.name} ${item.dir} 
+                </foreach>
+         </if>  
+        </where>
+    </select>
+
+</mapper>

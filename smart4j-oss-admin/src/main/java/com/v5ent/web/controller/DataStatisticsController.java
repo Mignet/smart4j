@@ -38,7 +38,7 @@ public class DataStatisticsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/statistics")
+	/*@RequestMapping("/statistics")
 	@RequestLogging("数据统计-页面")
 	@ResponseBody
 	public BaseResponse dataStatistics(DataStatisticsRequest request){
@@ -67,9 +67,9 @@ public class DataStatisticsController {
 		request.setDateFormat(dateFormat);
 		Map<String,Object> mapRlt = dataStatisticsService.queryHomePageData(request);
 		return AppResponseUtil.getSuccessResponse(mapRlt);
-	}
+	}*/
 	
-	@RequestMapping("/statistics/tag")
+	/*@RequestMapping("/statistics/tag")
 	@RequestLogging("数据统计-页面Tag")
 	@ResponseBody
 	public BaseResponse dataStatisticsWithTag(DataStatisticsRequest request){
@@ -133,7 +133,7 @@ public class DataStatisticsController {
 		request.setDateFormat(dateFormat);
 		Map<String,Object> mapRlt = dataStatisticsService.queryHomePageData(request);
 		return AppResponseUtil.getSuccessResponse(mapRlt);
-	}
+	}*/
 	
 	/**
 	 * 转换器

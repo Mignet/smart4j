@@ -147,9 +147,9 @@
  <script type="text/javascript" src="app/common/util.js"></script>
  <script type="text/javascript" > 
  $(document).ready(function() {
-	var params = {tag:1};	
+	/*var params = {tag:1};	
 	var path = 'rest/data/statistics/tag';
-	loadView(path,params);
+	loadView(path,params);*/
  }); 
 
  function loadView(path,params){

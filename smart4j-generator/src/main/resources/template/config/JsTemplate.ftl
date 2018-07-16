@@ -83,11 +83,11 @@ $(document).ready(function() {
             // the end user has not entered a value
             if ( ! name.isMultiValue() ) {
                 if ( ! name.val() ) {
-                	name.error( 'A activity name must be given' );
+                	name.error( '该字段必填' );
                 }
                  
                 if ( name.val().length <= 2 ) {
-                	name.error( 'The activity name length must be more that 2 characters' );
+                	name.error( '该字段长度必须超过 2个字符' );
                 }
             }
  

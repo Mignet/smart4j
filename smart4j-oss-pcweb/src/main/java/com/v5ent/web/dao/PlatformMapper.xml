@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.web.dao.PlatformMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.web.model.Platform" id="BaseResultMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="logo" property="logo" jdbcType="VARCHAR"/>
+		<result column="aors" property="aors" jdbcType="INTEGER"/>
+		<result column="tags" property="tags" jdbcType="VARCHAR"/>
+		<result column="rc_type" property="rcType" jdbcType="VARCHAR"/>
+		<result column="rc_level" property="rcLevel" jdbcType="VARCHAR"/>
+		<result column="bg_rz" property="bgRz" jdbcType="VARCHAR"/>
+		<result column="bg_pt" property="bgPt" jdbcType="VARCHAR"/>
+		<result column="bank" property="bank" jdbcType="VARCHAR"/>
+		<result column="icp" property="icp" jdbcType="VARCHAR"/>
+		<result column="tx_speed" property="txSpeed" jdbcType="VARCHAR"/>
+		<result column="cname" property="cname" jdbcType="VARCHAR"/>
+		<result column="zczb" property="zczb" jdbcType="VARCHAR"/>
+		<result column="onlinetime" property="onlinetime" jdbcType="DATE"/>
+		<result column="memo" property="memo" jdbcType="VARCHAR"/>
+		<result column="url" property="url" jdbcType="VARCHAR"/>
+		<result column="link" property="link" jdbcType="VARCHAR"/>
+		<result column="detail" property="detail" jdbcType="VARCHAR"/>
+		<result column="dmin" property="dmin" jdbcType="INTEGER"/>
+		<result column="dmax" property="dmax" jdbcType="INTEGER"/>
+		<result column="max_investors" property="maxInvestors" jdbcType="INTEGER"/>
+		<result column="tui" property="tui" jdbcType="INTEGER"/>
+		<result column="required_image" property="requiredImage" jdbcType="INTEGER"/>
+		<result column="required_name" property="requiredName" jdbcType="INTEGER"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	id,
+	    	name,
+	    	logo,
+	    	aors,
+	    	tags,
+	    	rc_type,
+	    	rc_level,
+	    	bg_rz,
+	    	bg_pt,
+	    	bank,
+	    	icp,
+	    	tx_speed,
+	    	cname,
+	    	zczb,
+	    	onlinetime,
+	    	memo,
+	    	url,
+	    	link,
+	    	detail,
+	    	dmin,
+	    	dmax,
+	    	max_investors,
+	    	tui,
+	    	status,
+	    	required_image,
+	    	required_name,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.id,
+	    	t.name,
+	    	t.logo,
+	    	t.aors,
+	    	t.tags,
+	    	t.rc_type,
+	    	t.rc_level,
+	    	t.bg_rz,
+	    	t.bg_pt,
+	    	t.bank,
+	    	t.icp,
+	    	t.tx_speed,
+	    	t.cname,
+	    	t.zczb,
+	    	t.onlinetime,
+	    	t.memo,
+	    	t.url,
+	    	t.link,
+	    	t.detail,
+	    	t.dmin,
+	    	t.dmax,
+	    	t.max_investors,
+	    	t.tui,
+	    	t.status,
+	    	t.required_image,
+	    	t.required_name,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != id ">
+			and id = #{id}
+		</if>
+		<if test=" null != name and ''!= name  ">
+			and name like CONCAT('%',#{name},'%' ) 
+		</if>
+		<if test=" null != logo and ''!= logo  ">
+			and logo = #{logo}
+		</if>
+		<if test=" null != aors ">
+			and aors = #{aors} or aors = 3
+		</if>
+		<if test=" null != tags and ''!= tags  ">
+			and tags = #{tags}
+		</if>
+		<if test=" null != rcType ">
+			and rc_type = #{rcType}
+		</if>
+		<if test=" null != rcLevel ">
+			and rc_level = #{rcLevel}
+		</if>
+		<if test=" null != bgRz ">
+			and bg_rz = #{bgRz}
+		</if>
+		<if test=" null != bgPt ">
+			and bg_pt = #{bgPt}
+		</if>
+		<if test=" null != bank and ''!= bank  ">
+			and bank = #{bank}
+		</if>
+		<if test=" null != icp and ''!= icp  ">
+			and icp = #{icp}
+		</if>
+		<if test=" null != txSpeed and ''!= txSpeed  ">
+			and tx_speed = #{txSpeed}
+		</if>
+		<if test=" null != cname and ''!= cname  ">
+			and cname = #{cname}
+		</if>
+		<if test=" null != zczb and ''!= zczb  ">
+			and zczb = #{zczb}
+		</if>
+		<if test=" null != onlinetime ">
+			and onlinetime = #{onlinetime}
+		</if>
+		<if test=" null != memo and ''!= memo  ">
+			and memo = #{memo}
+		</if>
+		<if test=" null != url and ''!= url  ">
+			and url = #{url}
+		</if>
+		<if test=" null != link and ''!= link  ">
+			and link = #{link}
+		</if>
+		<if test=" null != detail and ''!= detail  ">
+			and detail = #{detail}
+		</if>
+		<if test=" null != dmin ">
+			and dmin = #{dmin}
+		</if>
+		<if test=" null != dmax ">
+			and dmax = #{dmax}
+		</if>
+		<if test=" null != maxInvestors ">
+			and max_investors = #{maxInvestors}
+		</if>
+		<if test=" null != tui ">
+			and tui = #{tui}
+		</if>
+		<if test=" null != status ">
+			and status = #{status}
+		</if>
+		<if test=" null != requiredImage ">
+			and required_image = #{requiredImage}
+		</if>
+		<if test=" null != requiredName ">
+			and required_name = #{requiredName}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.Platform">
+		select <include refid="Base_Column_List" /> from  t_platform 
+		where 1=1 <include refid="Base_Condition" /> 
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.Platform">
+		select 
+		(select GROUP_CONCAT(t.name)  from t_tag t where FIND_IN_SET(t.id,tags) ORDER BY t.id) as tags ,
+		`id`,`name`, `logo`, `aors`, `tags`, `rc_type`, `rc_level`, `bg_rz`, `bg_pt`, `bank`, `icp`, `tx_speed`, `cname`, `zczb`, `onlinetime`, `memo`, `url`,`link`,`max_investors`,`tui`, `status`
+		from  t_platform 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select (select GROUP_CONCAT(name)  from t_tag where FIND_IN_SET(id,tags) ORDER BY id) as tags ,
+    <include refid="Base_Column_List" />
+    from  t_platform
+    where  id = #{0} and status = 1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from  t_platform
+    where id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.web.model.Platform" >
+    INSERT INTO  t_platform
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					name,
+				</if>
+			 	<if test=" null != logo and ''!= logo  ">
+					logo,
+				</if>
+			 	<if test=" null != aors ">
+					aors,
+				</if>
+			 	<if test=" null != tags and ''!= tags  ">
+					tags,
+				</if>
+			 	<if test=" null != rcType ">
+					rc_type,
+				</if>
+			 	<if test=" null != rcLevel ">
+					rc_level,
+				</if>
+			 	<if test=" null != bgRz ">
+					bg_rz,
+				</if>
+			 	<if test=" null != bgPt ">
+					bg_pt,
+				</if>
+			 	<if test=" null != bank and ''!= bank  ">
+					bank,
+				</if>
+			 	<if test=" null != icp and ''!= icp  ">
+					icp,
+				</if>
+			 	<if test=" null != txSpeed and ''!= txSpeed  ">
+					tx_speed,
+				</if>
+			 	<if test=" null != cname and ''!= cname  ">
+					cname,
+				</if>
+			 	<if test=" null != zczb and ''!= zczb  ">
+					zczb,
+				</if>
+			 	<if test=" null != onlinetime ">
+					onlinetime,
+				</if>
+			 	<if test=" null != memo and ''!= memo  ">
+					memo,
+				</if>
+			 	<if test=" null != url and ''!= url  ">
+					url,
+				</if>
+			 	<if test=" null != link and ''!= link  ">
+					link,
+				</if>
+			 	<if test=" null != detail and ''!= detail  ">
+					detail,
+				</if>
+			 	<if test=" null != dmin ">
+					dmin,
+				</if>
+			 	<if test=" null != dmax ">
+					dmax,
+				</if>
+			 	<if test=" null != maxInvestors ">
+					max_investors,
+				</if>
+			 	<if test=" null != tui ">
+					tui,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+			 	<if test=" null != requiredImage ">
+					required_image,
+				</if>
+			 	<if test=" null != requiredName ">
+					required_name,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					 	#{name},
+				</if>
+			 	<if test=" null != logo and ''!= logo  ">
+					 	#{logo},
+				</if>
+			 	<if test=" null != aors ">
+					 	#{aors},
+				</if>
+			 	<if test=" null != tags and ''!= tags  ">
+					 	#{tags},
+				</if>
+			 	<if test=" null != rcType ">
+					 	#{rcType},
+				</if>
+			 	<if test=" null != rcLevel ">
+					 	#{rcLevel},
+				</if>
+			 	<if test=" null != bgRz ">
+					 	#{bgRz},
+				</if>
+			 	<if test=" null != bgPt ">
+					 	#{bgPt},
+				</if>
+			 	<if test=" null != bank and ''!= bank  ">
+					 	#{bank},
+				</if>
+			 	<if test=" null != icp and ''!= icp  ">
+					 	#{icp},
+				</if>
+			 	<if test=" null != txSpeed and ''!= txSpeed  ">
+					 	#{txSpeed},
+				</if>
+			 	<if test=" null != cname and ''!= cname  ">
+					 	#{cname},
+				</if>
+			 	<if test=" null != zczb and ''!= zczb  ">
+					 	#{zczb},
+				</if>
+			 	<if test=" null != onlinetime ">
+					 	#{onlinetime},
+				</if>
+			 	<if test=" null != memo and ''!= memo  ">
+					 	#{memo},
+				</if>
+			 	<if test=" null != url and ''!= url  ">
+					 	#{url},
+				</if>
+			 	<if test=" null != link and ''!= link  ">
+					 	#{link},
+				</if>
+			 	<if test=" null != detail and ''!= detail  ">
+					 	#{detail},
+				</if>
+			 	<if test=" null != dmin ">
+					 	#{dmin},
+				</if>
+			 	<if test=" null != dmax ">
+					 	#{dmax},
+				</if>
+			 	<if test=" null != maxInvestors ">
+					 	#{maxInvestors},
+				</if>
+			 	<if test=" null != tui ">
+					 	#{tui},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+			 	<if test=" null != requiredImage ">
+					 	#{requiredImage},
+				</if>
+			 	<if test=" null != requiredName ">
+					 	#{requiredName},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.web.model.Platform" useGeneratedKeys="true" keyProperty="id" >
+		INSERT INTO  t_platform
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					name,
+				</if>
+			 	<if test=" null != logo and ''!= logo  ">
+					logo,
+				</if>
+			 	<if test=" null != aors ">
+					aors,
+				</if>
+			 	<if test=" null != tags and ''!= tags  ">
+					tags,
+				</if>
+			 	<if test=" null != rcType ">
+					rc_type,
+				</if>
+			 	<if test=" null != rcLevel ">
+					rc_level,
+				</if>
+			 	<if test=" null != bgRz ">
+					bg_rz,
+				</if>
+			 	<if test=" null != bgPt ">
+					bg_pt,
+				</if>
+			 	<if test=" null != bank and ''!= bank  ">
+					bank,
+				</if>
+			 	<if test=" null != icp and ''!= icp  ">
+					icp,
+				</if>
+			 	<if test=" null != txSpeed and ''!= txSpeed  ">
+					tx_speed,
+				</if>
+			 	<if test=" null != cname and ''!= cname  ">
+					cname,
+				</if>
+			 	<if test=" null != zczb and ''!= zczb  ">
+					zczb,
+				</if>
+			 	<if test=" null != onlinetime ">
+					onlinetime,
+				</if>
+			 	<if test=" null != memo and ''!= memo  ">
+					memo,
+				</if>
+			 	<if test=" null != url and ''!= url  ">
+					url,
+				</if>
+			 	<if test=" null != link and ''!= link  ">
+					link,
+				</if>
+			 	<if test=" null != detail and ''!= detail  ">
+					detail,
+				</if>
+			 	<if test=" null != dmin ">
+					dmin,
+				</if>
+			 	<if test=" null != dmax ">
+					dmax,
+				</if>
+			 	<if test=" null != maxInvestors ">
+					max_investors,
+				</if>
+			 	<if test=" null != tui ">
+					tui,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+			 	<if test=" null != requiredImage ">
+					required_image,
+				</if>
+			 	<if test=" null != requiredName ">
+					required_name,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					 	#{name},
+				</if>
+			 	<if test=" null != logo and ''!= logo  ">
+					 	#{logo},
+				</if>
+			 	<if test=" null != aors ">
+					 	#{aors},
+				</if>
+			 	<if test=" null != tags and ''!= tags  ">
+					 	#{tags},
+				</if>
+			 	<if test=" null != rcType ">
+					 	#{rcType},
+				</if>
+			 	<if test=" null != rcLevel ">
+					 	#{rcLevel},
+				</if>
+			 	<if test=" null != bgRz ">
+					 	#{bgRz},
+				</if>
+			 	<if test=" null != bgPt ">
+					 	#{bgPt},
+				</if>
+			 	<if test=" null != bank and ''!= bank  ">
+					 	#{bank},
+				</if>
+			 	<if test=" null != icp and ''!= icp  ">
+					 	#{icp},
+				</if>
+			 	<if test=" null != txSpeed and ''!= txSpeed  ">
+					 	#{txSpeed},
+				</if>
+			 	<if test=" null != cname and ''!= cname  ">
+					 	#{cname},
+				</if>
+			 	<if test=" null != zczb and ''!= zczb  ">
+					 	#{zczb},
+				</if>
+			 	<if test=" null != onlinetime ">
+					 	#{onlinetime},
+				</if>
+			 	<if test=" null != memo and ''!= memo  ">
+					 	#{memo},
+				</if>
+			 	<if test=" null != url and ''!= url  ">
+					 	#{url},
+				</if>
+			 	<if test=" null != link and ''!= link  ">
+					 	#{link},
+				</if>
+			 	<if test=" null != detail and ''!= detail  ">
+					 	#{detail},
+				</if>
+			 	<if test=" null != dmin ">
+					 	#{dmin},
+				</if>
+			 	<if test=" null != dmax ">
+					 	#{dmax},
+				</if>
+			 	<if test=" null != maxInvestors ">
+					 	#{maxInvestors},
+				</if>
+			 	<if test=" null != tui ">
+					 	#{tui},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+			 	<if test=" null != requiredImage ">
+					 	#{requiredImage},
+				</if>
+			 	<if test=" null != requiredName ">
+					 	#{requiredName},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.web.model.Platform" >
+  		UPDATE  t_platform
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != name and ''!= name  ">
+						name = #{name},
+					</if>
+					<if test=" null != logo and ''!= logo  ">
+						logo = #{logo},
+					</if>
+					<if test=" null != aors ">
+						aors = #{aors},
+					</if>
+					<if test=" null != tags and ''!= tags  ">
+						tags = #{tags},
+					</if>
+					<if test=" null != rcType ">
+						rc_type = #{rcType},
+					</if>
+					<if test=" null != rcLevel ">
+						rc_level = #{rcLevel},
+					</if>
+					<if test=" null != bgRz ">
+						bg_rz = #{bgRz},
+					</if>
+					<if test=" null != bgPt ">
+						bg_pt = #{bgPt},
+					</if>
+					<if test=" null != bank and ''!= bank  ">
+						bank = #{bank},
+					</if>
+					<if test=" null != icp and ''!= icp  ">
+						icp = #{icp},
+					</if>
+					<if test=" null != txSpeed and ''!= txSpeed  ">
+						tx_speed = #{txSpeed},
+					</if>
+					<if test=" null != cname and ''!= cname  ">
+						cname = #{cname},
+					</if>
+					<if test=" null != zczb and ''!= zczb  ">
+						zczb = #{zczb},
+					</if>
+					<if test=" null != onlinetime ">
+						onlinetime = #{onlinetime},
+					</if>
+					<if test=" null != memo and ''!= memo  ">
+						memo = #{memo},
+					</if>
+					<if test=" null != url and ''!= url  ">
+						url = #{url},
+					</if>
+					<if test=" null != link and ''!= link  ">
+						link = #{link},
+					</if>
+					<if test=" null != detail and ''!= detail  ">
+						detail = #{detail},
+					</if>
+					<if test=" null != dmin ">
+						dmin = #{dmin},
+					</if>
+					<if test=" null != dmax ">
+						dmax = #{dmax},
+					</if>
+					<if test=" null != maxInvestors ">
+						max_investors = #{maxInvestors},
+					</if>
+					<if test=" null != tui ">
+						tui = #{tui},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+					<if test=" null != requiredImage ">
+						required_image = #{requiredImage},
+					</if>
+					<if test=" null != requiredName ">
+						required_name = #{requiredName},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 id = #{id}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.web.model.Platform" >
+	    UPDATE  t_platform
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != name and ''!= name  ">
+						name = #{name},
+					</if>
+					<if test=" null != logo and ''!= logo  ">
+						logo = #{logo},
+					</if>
+					<if test=" null != aors ">
+						aors = #{aors},
+					</if>
+					<if test=" null != tags and ''!= tags  ">
+						tags = #{tags},
+					</if>
+					<if test=" null != rcType ">
+						rc_type = #{rcType},
+					</if>
+					<if test=" null != rcLevel ">
+						rc_level = #{rcLevel},
+					</if>
+					<if test=" null != bgRz ">
+						bg_rz = #{bgRz},
+					</if>
+					<if test=" null != bgPt ">
+						bg_pt = #{bgPt},
+					</if>
+					<if test=" null != bank and ''!= bank  ">
+						bank = #{bank},
+					</if>
+					<if test=" null != icp and ''!= icp  ">
+						icp = #{icp},
+					</if>
+					<if test=" null != txSpeed and ''!= txSpeed  ">
+						tx_speed = #{txSpeed},
+					</if>
+					<if test=" null != cname and ''!= cname  ">
+						cname = #{cname},
+					</if>
+					<if test=" null != zczb and ''!= zczb  ">
+						zczb = #{zczb},
+					</if>
+					<if test=" null != onlinetime ">
+						onlinetime = #{onlinetime},
+					</if>
+					<if test=" null != memo and ''!= memo  ">
+						memo = #{memo},
+					</if>
+					<if test=" null != url and ''!= url  ">
+						url = #{url},
+					</if>
+					<if test=" null != link and ''!= link  ">
+						link = #{link},
+					</if>
+					<if test=" null != detail and ''!= detail  ">
+						detail = #{detail},
+					</if>
+					<if test=" null != dmin ">
+						dmin = #{dmin},
+					</if>
+					<if test=" null != dmax ">
+						dmax = #{dmax},
+					</if>
+					<if test=" null != maxInvestors ">
+						max_investors = #{maxInvestors},
+					</if>
+					<if test=" null != tui ">
+						tui = #{tui},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+					<if test=" null != requiredImage ">
+						required_image = #{requiredImage},
+					</if>
+					<if test=" null != requiredName ">
+						required_name = #{requiredName},
+					</if>
+			</trim>
+		</set>
+		<where>
+			id = #{0}
+		</where>
+	  </update>
+
+	<!-- 分页条件查询 -->
+    <select id="selectBySearchInfo" resultMap="BaseResultMap" parameterType="com.v5ent.core.datatable.DataTable">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_platform
+        <where> 
+        <if test="dt.search!=null">  
+                name LIKE CONCAT('%','${dt.search.value}','%' )  
+         </if>  
+         <if test="dt.order!=null">  
+               <foreach collection="dt.order" index="index" item="item"
+                    open="order by" separator="," close=" ">
+                    ${item.name} ${item.dir} 
+                </foreach>
+         </if>  
+        </where>
+    </select>
+    
+    <!-- 精选平台-->
+    <select id="top3" resultMap="BaseResultMap" parameterType="com.v5ent.web.model.Platform">
+        SELECT
+        (select GROUP_CONCAT(name)  from t_tag where FIND_IN_SET(id,tags) ORDER BY id) as tags ,
+        `id`,`name`, `logo`, `aors`, `tags`, `rc_type`, `rc_level`, `bg_rz`, `bg_pt`, `bank`, `icp`, `tx_speed`, `cname`, `zczb`, `onlinetime`, `memo`, `url`,`link`,`max_investors`,`tui`, `status`
+        FROM  t_platform
+        WHERE tui = 1
+        and status = 1
+        LIMIT 3
+    </select>
+    <!-- 热门平台  -->
+    <select id="hot" resultMap="BaseResultMap" parameterType="com.v5ent.web.model.Platform">
+        SELECT
+        (select GROUP_CONCAT(name)  from t_tag where FIND_IN_SET(id,tags) ORDER BY id) as tags ,
+        `id`,`name`, `logo`, `aors`, `tags`, `rc_type`, `rc_level`, `bg_rz`, `bg_pt`, `bank`, `icp`, `tx_speed`, `cname`, `zczb`, `onlinetime`, `memo`, `url`,`link`,`max_investors`,`tui`, `status`
+        FROM  t_platform
+        WHERE status = 1
+        ORDER BY tags desc
+        LIMIT 11
+    </select>
+
+</mapper>

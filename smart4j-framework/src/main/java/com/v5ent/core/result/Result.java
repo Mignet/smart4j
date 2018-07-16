@@ -19,7 +19,7 @@ public class Result implements Serializable {
     /**
      * 状态码
      */
-    private int statusCode;
+    private int statusCode = 0;
 
     /**
      * 是否成功
@@ -54,7 +54,21 @@ public class Result implements Serializable {
     public Result() {
     }
 
+    public Result(boolean success) {
+    	if(success){
+    		statusCode = 0;
+    	}else{
+    		statusCode = 1;
+    	}
+    	this.success = success;
+    }
+    
     public Result(boolean success,String message) {
+    	if(success){
+    		statusCode = 0;
+    	}else{
+    		statusCode = 1;
+    	}
     	this.success = success;
     	this.message = message;
     }

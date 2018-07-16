@@ -24,6 +24,8 @@
                 /rest/log = anon
                 /rest/log/data = anon
                 /rest/image/captcha = anon
+                <!-- api -->
+                /rest/api/** = anon
                 <!-- 其他资源需要认证 -->
                 /** = authc
             </value>
@@ -41,6 +43,14 @@
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="sessionDAO" ref="sessionDAO"/>
+         <!-- 设置全局会话超时时间，默认30分钟(1800000) -->  
+        <property name="globalSessionTimeout" value="18000000" />  
+        <!-- 是否在会话过期后会调用SessionDAO的delete方法删除会话 默认true -->  
+        <property name="deleteInvalidSessions" value="true" />  
+        <!-- 会话验证器调度时间 -->  
+        <property name="sessionValidationInterval" value="1800000" />  
+        <!-- 定时检查失效的session -->  
+        <property name="sessionValidationSchedulerEnabled" value="true" />  
     </bean>
 
     <!-- 安全管理器 -->

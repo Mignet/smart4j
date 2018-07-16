@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v5ent.web.dao.PlanMapper">
+	<!-- Result Map-->
+	<resultMap  type="com.v5ent.web.model.Plan" id="BaseResultMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="pid" property="pid" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="INTEGER"/>
+		<result column="product" property="product" jdbcType="VARCHAR"/>
+		<result column="mount" property="mount" jdbcType="VARCHAR"/>
+		<result column="mount_max" property="mountMax" jdbcType="VARCHAR"/>
+		<result column="fanli" property="fanli" jdbcType="VARCHAR"/>
+		<result column="jiangli" property="jiangli" jdbcType="VARCHAR"/>
+		<result column="yearate" property="yearate" jdbcType="VARCHAR"/>
+		<result column="hongbao" property="hongbao" jdbcType="VARCHAR"/>
+		<result column="tiyanjin" property="tiyanjin" jdbcType="VARCHAR"/>
+		<result column="other" property="other" jdbcType="VARCHAR"/>
+		<result column="touzizhouqi" property="touzizhouqi" jdbcType="VARCHAR"/>
+		<result column="shouyi" property="shouyi" jdbcType="VARCHAR"/>
+		<result column="yearfee" property="yearfee" jdbcType="VARCHAR"/>
+		<result column="fanlizhouqi" property="fanlizhouqi" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	
+  <sql id="Base_Column_List">
+    <trim suffixOverrides=",">
+	    	id,
+	    	pid,
+	    	name,
+	    	type,
+	    	product,
+	    	mount,
+	    	mount_max,
+	    	fanli,
+	    	jiangli,
+	    	yearate,
+	    	hongbao,
+	    	tiyanjin,
+	    	other,
+	    	touzizhouqi,
+	    	shouyi,
+	    	yearfee,
+	    	fanlizhouqi,
+	    	status,
+    </trim>
+  </sql>
+  
+ <sql id="Base_Column_List_T">
+    <trim suffixOverrides=",">
+	    	t.id,
+	    	t.pid,
+	    	t.name,
+	    	t.type,
+	    	t.product,
+	    	t.mount,
+	    	t.mount_max,
+	    	t.fanli,
+	    	t.jiangli,
+	    	t.yearate,
+	    	t.hongbao,
+	    	t.tiyanjin,
+	    	t.other,
+	    	t.touzizhouqi,
+	    	t.shouyi,
+	    	t.yearfee,
+	    	t.fanlizhouqi,
+	    	t.status,
+    </trim>
+  </sql>  
+  
+  <sql id="Base_Condition">
+		<if test=" null != id ">
+			and id = #{id}
+		</if>
+		<if test=" null != pid ">
+			and pid = #{pid}
+		</if>
+		<if test=" null != name and ''!= name  ">
+			and name = #{name}
+		</if>
+		<if test=" null != type ">
+			and type = #{type}
+		</if>
+		<if test=" null != product and ''!= product  ">
+			and product = #{product}
+		</if>
+		<if test=" null != mount and ''!= mount  ">
+			and mount = #{mount}
+		</if>
+		<if test=" null != mountMax and ''!= mountMax  ">
+			and mount_max = #{mountMax}
+		</if>
+		<if test=" null != fanli and ''!= fanli  ">
+			and fanli = #{fanli}
+		</if>
+		<if test=" null != jiangli and ''!= jiangli  ">
+			and jiangli = #{jiangli}
+		</if>
+		<if test=" null != yearate and ''!= yearate  ">
+			and yearate = #{yearate}
+		</if>
+		<if test=" null != hongbao and ''!= hongbao  ">
+			and hongbao = #{hongbao}
+		</if>
+		<if test=" null != tiyanjin and ''!= tiyanjin  ">
+			and tiyanjin = #{tiyanjin}
+		</if>
+		<if test=" null != other and ''!= other  ">
+			and other = #{other}
+		</if>
+		<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+			and touzizhouqi = #{touzizhouqi}
+		</if>
+		<if test=" null != shouyi and ''!= shouyi  ">
+			and shouyi = #{shouyi}
+		</if>
+		<if test=" null != yearfee and ''!= yearfee  ">
+			and yearfee = #{yearfee}
+		</if>
+		<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+			and fanlizhouqi = #{fanlizhouqi}
+		</if>
+		<if test=" null != status ">
+			and status = #{status}
+		</if>
+  </sql>
+  
+  <select id="selectOneByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.Plan">
+		select <include refid="Base_Column_List" /> from  t_plan 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+  
+  <select id="selectByCondition" resultMap="BaseResultMap"  parameterType="com.v5ent.web.model.Plan">
+		select <include refid="Base_Column_List" /> from  t_plan 
+		where 1=1 <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from  t_plan
+    where  id = #{0}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from  t_plan
+    where id = #{0}
+  </delete>
+
+  <insert id="insert" parameterType="com.v5ent.web.model.Plan" >
+    INSERT INTO  t_plan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != pid ">
+					pid,
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					name,
+				</if>
+			 	<if test=" null != type ">
+					type,
+				</if>
+			 	<if test=" null != product and ''!= product  ">
+					product,
+				</if>
+			 	<if test=" null != mount and ''!= mount  ">
+					mount,
+				</if>
+			 	<if test=" null != mountMax and ''!= mountMax  ">
+					mount_max,
+				</if>
+			 	<if test=" null != fanli and ''!= fanli  ">
+					fanli,
+				</if>
+			 	<if test=" null != jiangli and ''!= jiangli  ">
+					jiangli,
+				</if>
+			 	<if test=" null != yearate and ''!= yearate  ">
+					yearate,
+				</if>
+			 	<if test=" null != hongbao and ''!= hongbao  ">
+					hongbao,
+				</if>
+			 	<if test=" null != tiyanjin and ''!= tiyanjin  ">
+					tiyanjin,
+				</if>
+			 	<if test=" null != other and ''!= other  ">
+					other,
+				</if>
+			 	<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+					touzizhouqi,
+				</if>
+			 	<if test=" null != shouyi and ''!= shouyi  ">
+					shouyi,
+				</if>
+			 	<if test=" null != yearfee and ''!= yearfee  ">
+					yearfee,
+				</if>
+			 	<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+					fanlizhouqi,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != pid ">
+					 	#{pid},
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					 	#{name},
+				</if>
+			 	<if test=" null != type ">
+					 	#{type},
+				</if>
+			 	<if test=" null != product and ''!= product  ">
+					 	#{product},
+				</if>
+			 	<if test=" null != mount and ''!= mount  ">
+					 	#{mount},
+				</if>
+			 	<if test=" null != mountMax and ''!= mountMax  ">
+					 	#{mountMax},
+				</if>
+			 	<if test=" null != fanli and ''!= fanli  ">
+					 	#{fanli},
+				</if>
+			 	<if test=" null != jiangli and ''!= jiangli  ">
+					 	#{jiangli},
+				</if>
+			 	<if test=" null != yearate and ''!= yearate  ">
+					 	#{yearate},
+				</if>
+			 	<if test=" null != hongbao and ''!= hongbao  ">
+					 	#{hongbao},
+				</if>
+			 	<if test=" null != tiyanjin and ''!= tiyanjin  ">
+					 	#{tiyanjin},
+				</if>
+			 	<if test=" null != other and ''!= other  ">
+					 	#{other},
+				</if>
+			 	<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+					 	#{touzizhouqi},
+				</if>
+			 	<if test=" null != shouyi and ''!= shouyi  ">
+					 	#{shouyi},
+				</if>
+			 	<if test=" null != yearfee and ''!= yearfee  ">
+					 	#{yearfee},
+				</if>
+			 	<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+					 	#{fanlizhouqi},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+		</trim>
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.v5ent.web.model.Plan" useGeneratedKeys="true" keyProperty="id" >
+		INSERT INTO  t_plan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					id,
+				</if>
+			 	<if test=" null != pid ">
+					pid,
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					name,
+				</if>
+			 	<if test=" null != type ">
+					type,
+				</if>
+			 	<if test=" null != product and ''!= product  ">
+					product,
+				</if>
+			 	<if test=" null != mount and ''!= mount  ">
+					mount,
+				</if>
+			 	<if test=" null != mountMax and ''!= mountMax  ">
+					mount_max,
+				</if>
+			 	<if test=" null != fanli and ''!= fanli  ">
+					fanli,
+				</if>
+			 	<if test=" null != jiangli and ''!= jiangli  ">
+					jiangli,
+				</if>
+			 	<if test=" null != yearate and ''!= yearate  ">
+					yearate,
+				</if>
+			 	<if test=" null != hongbao and ''!= hongbao  ">
+					hongbao,
+				</if>
+			 	<if test=" null != tiyanjin and ''!= tiyanjin  ">
+					tiyanjin,
+				</if>
+			 	<if test=" null != other and ''!= other  ">
+					other,
+				</if>
+			 	<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+					touzizhouqi,
+				</if>
+			 	<if test=" null != shouyi and ''!= shouyi  ">
+					shouyi,
+				</if>
+			 	<if test=" null != yearfee and ''!= yearfee  ">
+					yearfee,
+				</if>
+			 	<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+					fanlizhouqi,
+				</if>
+			 	<if test=" null != status ">
+					status,
+				</if>
+		</trim>
+		<trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+			 	<if test=" null != id ">
+					 	#{id},
+				</if>
+			 	<if test=" null != pid ">
+					 	#{pid},
+				</if>
+			 	<if test=" null != name and ''!= name  ">
+					 	#{name},
+				</if>
+			 	<if test=" null != type ">
+					 	#{type},
+				</if>
+			 	<if test=" null != product and ''!= product  ">
+					 	#{product},
+				</if>
+			 	<if test=" null != mount and ''!= mount  ">
+					 	#{mount},
+				</if>
+			 	<if test=" null != mountMax and ''!= mountMax  ">
+					 	#{mountMax},
+				</if>
+			 	<if test=" null != fanli and ''!= fanli  ">
+					 	#{fanli},
+				</if>
+			 	<if test=" null != jiangli and ''!= jiangli  ">
+					 	#{jiangli},
+				</if>
+			 	<if test=" null != yearate and ''!= yearate  ">
+					 	#{yearate},
+				</if>
+			 	<if test=" null != hongbao and ''!= hongbao  ">
+					 	#{hongbao},
+				</if>
+			 	<if test=" null != tiyanjin and ''!= tiyanjin  ">
+					 	#{tiyanjin},
+				</if>
+			 	<if test=" null != other and ''!= other  ">
+					 	#{other},
+				</if>
+			 	<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+					 	#{touzizhouqi},
+				</if>
+			 	<if test=" null != shouyi and ''!= shouyi  ">
+					 	#{shouyi},
+				</if>
+			 	<if test=" null != yearfee and ''!= yearfee  ">
+					 	#{yearfee},
+				</if>
+			 	<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+					 	#{fanlizhouqi},
+				</if>
+			 	<if test=" null != status ">
+					 	#{status},
+				</if>
+		</trim>
+	</insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.v5ent.web.model.Plan" >
+  		UPDATE  t_plan
+		<set>
+			<trim suffixOverrides=",">
+					<if test=" null != pid ">
+						pid = #{pid},
+					</if>
+					<if test=" null != name and ''!= name  ">
+						name = #{name},
+					</if>
+					<if test=" null != type ">
+						type = #{type},
+					</if>
+					<if test=" null != product and ''!= product  ">
+						product = #{product},
+					</if>
+					<if test=" null != mount and ''!= mount  ">
+						mount = #{mount},
+					</if>
+					<if test=" null != mountMax and ''!= mountMax  ">
+						mount_max = #{mountMax},
+					</if>
+					<if test=" null != fanli and ''!= fanli  ">
+						fanli = #{fanli},
+					</if>
+					<if test=" null != jiangli and ''!= jiangli  ">
+						jiangli = #{jiangli},
+					</if>
+					<if test=" null != yearate and ''!= yearate  ">
+						yearate = #{yearate},
+					</if>
+					<if test=" null != hongbao and ''!= hongbao  ">
+						hongbao = #{hongbao},
+					</if>
+					<if test=" null != tiyanjin and ''!= tiyanjin  ">
+						tiyanjin = #{tiyanjin},
+					</if>
+					<if test=" null != other and ''!= other  ">
+						other = #{other},
+					</if>
+					<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+						touzizhouqi = #{touzizhouqi},
+					</if>
+					<if test=" null != shouyi and ''!= shouyi  ">
+						shouyi = #{shouyi},
+					</if>
+					<if test=" null != yearfee and ''!= yearfee  ">
+						yearfee = #{yearfee},
+					</if>
+					<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+						fanlizhouqi = #{fanlizhouqi},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+			</trim>
+		</set>
+		<where>
+			 id = #{id}
+		</where>
+	</update>
+  
+	<update id="updateByPrimaryKey" parameterType="com.v5ent.web.model.Plan" >
+	    UPDATE  t_plan
+	   <set>
+			<trim suffixOverrides=",">
+					<if test=" null != pid ">
+						pid = #{pid},
+					</if>
+					<if test=" null != name and ''!= name  ">
+						name = #{name},
+					</if>
+					<if test=" null != type ">
+						type = #{type},
+					</if>
+					<if test=" null != product and ''!= product  ">
+						product = #{product},
+					</if>
+					<if test=" null != mount and ''!= mount  ">
+						mount = #{mount},
+					</if>
+					<if test=" null != mountMax and ''!= mountMax  ">
+						mount_max = #{mountMax},
+					</if>
+					<if test=" null != fanli and ''!= fanli  ">
+						fanli = #{fanli},
+					</if>
+					<if test=" null != jiangli and ''!= jiangli  ">
+						jiangli = #{jiangli},
+					</if>
+					<if test=" null != yearate and ''!= yearate  ">
+						yearate = #{yearate},
+					</if>
+					<if test=" null != hongbao and ''!= hongbao  ">
+						hongbao = #{hongbao},
+					</if>
+					<if test=" null != tiyanjin and ''!= tiyanjin  ">
+						tiyanjin = #{tiyanjin},
+					</if>
+					<if test=" null != other and ''!= other  ">
+						other = #{other},
+					</if>
+					<if test=" null != touzizhouqi and ''!= touzizhouqi  ">
+						touzizhouqi = #{touzizhouqi},
+					</if>
+					<if test=" null != shouyi and ''!= shouyi  ">
+						shouyi = #{shouyi},
+					</if>
+					<if test=" null != yearfee and ''!= yearfee  ">
+						yearfee = #{yearfee},
+					</if>
+					<if test=" null != fanlizhouqi and ''!= fanlizhouqi  ">
+						fanlizhouqi = #{fanlizhouqi},
+					</if>
+					<if test=" null != status ">
+						status = #{status},
+					</if>
+			</trim>
+		</set>
+		<where>
+			id = #{0}
+		</where>
+	  </update>
+
+	<!-- 分页条件查询 -->
+    <select id="selectBySearchInfo" resultMap="BaseResultMap" parameterType="com.v5ent.core.datatable.DataTable">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  t_plan
+        <where> 
+        <if test="dt.search!=null">  
+                name LIKE CONCAT('%','${dt.search.value}','%' )  
+         </if>  
+         <if test="dt.order!=null">  
+               <foreach collection="dt.order" index="index" item="item"
+                    open="order by" separator="," close=" ">
+                    ${item.name} ${item.dir} 
+                </foreach>
+         </if>  
+        </where>
+    </select>
+
+</mapper>
